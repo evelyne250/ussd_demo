@@ -80,17 +80,14 @@ class UssdList(APIView):
 
     def post(self, request, format=None):
         serializers = UssdSerializer(data=request.data)
-        # msisdn = request.data.get('msisdn')
-        # session_id = request.data.get('session_id')
-        # newreq = request.data.get('newreq')
-        # input = request.data.get('input')
-        # msg="My phone number is "+ msisdn + ". My session id is " + session_id + ". new request is " + newreq + ". with input of " + input
-        # session_id =
+        msisdn = request.data.get('msisdn')
+        session_id = request.data.get('session_id')
+        newreq = request.data.get('newreq')
+        input = request.data.get('input')
+        msg="My phone number is "+ msisdn + ". My session id is " + session_id + ". new request is " + newreq + ". with input of " + input
         headers = {'FreeFlow': "FC"}
         if serializers.is_valid():
-            
-
             # msg = my phone number is
             serializers.save()
-            return Response(headers = headers, status=status.HTTP_201_CREATED)
+            return Response({"{}".format(msg)},headers = headers, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, headers = headers,status=status.HTTP_400_BAD_REQUEST)
