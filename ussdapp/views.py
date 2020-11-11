@@ -75,7 +75,7 @@ class UssdList(APIView):
         if serializers.is_valid():
               # msg = my phone number is
             serializers.save()
-            return Response({"{}".format(msg)}, headers = headers, status=status.HTTP_201_CREATED)
+            return Response(serializers.data, headers = headers, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, headers = headers,status=status.HTTP_400_BAD_REQUEST)
 
     def post(self, request, format=None):
@@ -89,5 +89,5 @@ class UssdList(APIView):
         if serializers.is_valid():
             # msg = my phone number is
             serializers.save()
-            return Response({"{}".format(msg)},headers = headers, status=status.HTTP_201_CREATED)
+            return Response(serializers.data, headers = headers, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, headers = headers,status=status.HTTP_400_BAD_REQUEST)
